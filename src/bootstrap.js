@@ -19,6 +19,7 @@ function main() {
         <Switch>
           <Route
             path="/"
+            exact
             component={Home}
           />
           <Route
