@@ -15,13 +15,41 @@ class Post extends Component {
     return topics;
   }
 
+  renderLinks() {
+    let links = this.props.post_links.map((post_link, index) => {
+      return (
+        <div
+          className="post-link"
+          key={index}
+        >
+          <div className="post-link_box"></div>
+
+          <div className="post-link_link">
+            <a href={post_link.link_url}>Useful Link #{index + 1}</a>
+          </div>
+        </div>
+      );
+    });
+    return links;
+  }
+
   render() {
-    return (
-      <li className="recent-post">
-        <div className="recent-post_title">{this.props.title}</div>
-        <div className="recent-post_topics">{this.renderTopics()}</div>
-      </li>
-    );
+    if (this.props.type == "recent") {
+      return (
+        <li className="recent-post">
+          <div className="recent-post_title">{this.props.title}</div>
+          <div className="recent-post_topics">{this.renderTopics()}</div>
+        </li>
+      );
+    } else if (this.props.type == "result") {
+      return (
+        <li className="result-post">
+          <div className="result-post_topic">{this.renderTopics()}</div>
+          <div className="result-post_title">{this.props.title}</div>
+          <div className="result-post_links">{this.renderLinks()}</div>
+        </li>
+      );
+    }
   }
 }
 
